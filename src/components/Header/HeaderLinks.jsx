@@ -11,10 +11,14 @@ import {
   WishListCount,
   WishListIcon,
 } from "./HeaderStyled";
+import { useSelector } from "react-redux";
 
 const HeaderLinks = () => {
   const [open, setOpen] = useState(false);
-
+  const basketCount = useSelector(
+    (state) => state.persistedReducer.basket.basket.length
+  );
+  const wishlistCount = useSelector(state => state.persistedReducer.wishlist.wishlist.length)
   const toggleSearchBox = () => {
     setOpen(true);
   };
@@ -32,13 +36,13 @@ const HeaderLinks = () => {
         <SearchInput />
         <SearchIcon />
       </SearchButton>
-      <WishListContainer>
+      <WishListContainer to="/wishlist">
         <WishListIcon />
-        <WishListCount>2</WishListCount>
+        <WishListCount>{wishlistCount}</WishListCount>
       </WishListContainer>
-      <BasketContainer>
+      <BasketContainer to="/cart">
         <BasketIcon />
-        <BasketCount>2</BasketCount>
+        <BasketCount>{basketCount}</BasketCount>
       </BasketContainer>
     </HeaderLeft>
   );

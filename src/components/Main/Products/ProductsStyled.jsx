@@ -36,6 +36,9 @@ const ProductWish = styled.button`
   &:hover svg {
     fill: #c96 !important;
   }
+  &.fill svg{
+    fill: #c96 !important;
+  }
 `;
 const ProductAddBtn = styled.button`
   visibility: hidden;
@@ -47,6 +50,7 @@ const ProductAddBtn = styled.button`
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 5px;
   color: #c96;
   transition: 250ms linear;
   font-size: 18px;
@@ -54,8 +58,13 @@ const ProductAddBtn = styled.button`
   &:hover {
     box-shadow: 0 0.05em 0 0 #cc9966;
   }
+  &:disabled {
+    background-color: #c96;
+    color:#ebebeb;
+    opacity: .88;
+  }
 `;
-const Product = styled(Link)`
+const Product = styled.div`
   margin: 10px;
   width: 20%;
   &:hover {
@@ -133,9 +142,13 @@ const ProductWishIcon = styled(FiHeart)`
   width: 20px;
   height: 20px;
 `;
-const ProductImageContainer = styled.div``;
+const ProductImageContainer = styled(Link)`
+display: block;
+height: 187px;
+`
 const ProductImage = styled.img`
  width: 100%;
+ height: 100%;
  object-fit: cover;
 `;
 const ProductAddBtnIcon = styled(BsArrowRight)``;

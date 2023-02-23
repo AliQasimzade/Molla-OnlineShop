@@ -30,6 +30,9 @@ const ProductWishBtn = styled.button`
   &:hover svg {
     fill: #c96 !important;
   }
+  &.fill svg {
+    fill: #c96 !important;
+  }
 `;
 
 const ProductAddToCart = styled.button`
@@ -56,6 +59,11 @@ const ProductAddToCart = styled.button`
     background-color: #c96;
     border-bottom-color: #c96;
   }
+  &:disabled {
+    background-color: #c96;
+    color: #ebebeb;
+    opacity: .55;
+  }
 `;
 const ProductAddToCartIcon = styled(MdAddShoppingCart)`
   margin-right: 9px;
@@ -71,7 +79,7 @@ const ProductBottom = styled.div`
   text-align: center;
 `;
 
-const ProductCart = styled(Link)`
+const ProductCart = styled.div`
   position: relative;
   transition: 250ms linear;
   margin: 4px 0;
@@ -93,7 +101,10 @@ const ProductCart = styled(Link)`
 `;
 const ProductCartWrapper = styled.div``;
 
-const ProductCartImageContainer = styled.div``;
+const ProductCartImageContainer = styled(Link)`
+display: block;
+ height: 250px;
+`;
 const ProductCartImage = styled.img`
   width: 100%;
   object-fit: cover;

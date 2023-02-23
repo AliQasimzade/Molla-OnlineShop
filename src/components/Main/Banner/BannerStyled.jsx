@@ -81,6 +81,7 @@ const CarouselItemButton = styled.a`
   box-shadow: none;
   border: 1px solid #c96;
   padding: 11px 15px;
+  width: 170px;
   display: flex;
   align-items: center;
   justify-content: space-between;

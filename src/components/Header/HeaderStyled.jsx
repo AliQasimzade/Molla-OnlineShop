@@ -55,12 +55,13 @@ const SearchInput = styled.input.attrs({
   border: none;
   outline: none;
 `;
-const BasketContainer = styled.button`
+const BasketContainer = styled(Link)`
   width: 25px;
   height: 25px;
   border: 0;
   padding: 0;
   outline: 0;
+  color: #333333;
   background: none;
   position: relative;
   cursor: pointer;

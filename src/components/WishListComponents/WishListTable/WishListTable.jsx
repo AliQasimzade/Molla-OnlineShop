@@ -15,13 +15,34 @@ import {
   WishListTableBodyDataContentAddToCart,
   WishListTableBodyDataContentAddToCartIcon,
   WishListTableBodyDataContentRemove,
-  WishListTableBodyDataContentRemoveIcon
+  WishListTableBodyDataContentRemoveIcon,
 } from "./WishListTableStyled";
+import { useSelector, useDispatch } from "react-redux";
+import { removeWishItem } from "../../../redux/slices/wishListSlice";
+import { addBasket } from "../../../redux/slices/basketSlice";
 
 const WishListTable = () => {
+  const dispatch = useDispatch();
+  const wishlist = useSelector(
+    (state) => state.persistedReducer.wishlist.wishlist
+  );
+  const basket = useSelector((state) => state.persistedReducer.basket.basket);
+
+  const removeWish = (wi) => {
+    dispatch(removeWishItem(wi));
+  };
+
+  const addToBasket = (pro) => {
+    dispatch(addBasket(pro));
+    const copyWishlist = [...wishlist];
+    const findWishItem = copyWishlist.find((wi) => wi._id === pro._id);
+    if (findWishItem) {
+      dispatch(removeWishItem(findWishItem));
+    }
+  };
   return (
     <WishListTableContainer>
-      <WishListTableContent>
+      {wishlist.length > 0 ? <WishListTableContent>
         <WishListTableHead>
           <WishListTableRow>
             <WishListTableHeadData>Product</WishListTableHeadData>
@@ -32,95 +53,47 @@ const WishListTable = () => {
           </WishListTableRow>
         </WishListTableHead>
         <WishListTableBody>
-          <WishListTableRow>
-            <WishListTableData>
-              <WishListTableBodyDataContent>
-                <WishListTableBodyDataContentImageContainer>
-                  <WishListTableBodyDataContentImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/table/product-1.jpg" />
-                </WishListTableBodyDataContentImageContainer>
-                <WishListTableBodyDataContentTitle>
-                  Beige knitted elastic runner shoes
-                </WishListTableBodyDataContentTitle>
-              </WishListTableBodyDataContent>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentPrice>
-                    $ 84.00
-                </WishListTableBodyDataContentPrice>
-            </WishListTableData>
-            <WishListTableData> In stock</WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentAddToCart>
-                <WishListTableBodyDataContentAddToCartIcon />
-                    <span>Add to cart</span>
-                </WishListTableBodyDataContentAddToCart>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentRemove>
-                    <WishListTableBodyDataContentRemoveIcon />
-                </WishListTableBodyDataContentRemove>
-            </WishListTableData>
-          </WishListTableRow>
-          <WishListTableRow>
-          <WishListTableData>
-              <WishListTableBodyDataContent>
-                <WishListTableBodyDataContentImageContainer>
-                  <WishListTableBodyDataContentImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/table/product-1.jpg" />
-                </WishListTableBodyDataContentImageContainer>
-                <WishListTableBodyDataContentTitle>
-                  Beige knitted elastic runner shoes
-                </WishListTableBodyDataContentTitle>
-              </WishListTableBodyDataContent>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentPrice>
-                    $ 84.00
-                </WishListTableBodyDataContentPrice>
-            </WishListTableData>
-            <WishListTableData> In stock</WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentAddToCart>
+          { wishlist.map((wish) => (
+              <WishListTableRow key={wish._id}>
+                <WishListTableData>
+                  <WishListTableBodyDataContent>
+                    <WishListTableBodyDataContentImageContainer>
+                      <WishListTableBodyDataContentImage src={wish.image} />
+                    </WishListTableBodyDataContentImageContainer>
+                    <WishListTableBodyDataContentTitle>
+                      {wish.title}
+                    </WishListTableBodyDataContentTitle>
+                  </WishListTableBodyDataContent>
+                </WishListTableData>
+                <WishListTableData>
+                  <WishListTableBodyDataContentPrice>
+                    $ {wish.price}
+                  </WishListTableBodyDataContentPrice>
+                </WishListTableData>
+                <WishListTableData> In stock</WishListTableData>
+                <WishListTableData>
+                  <WishListTableBodyDataContentAddToCart
+                    onClick={() => addToBasket(wish)}
+                  >
                     <WishListTableBodyDataContentAddToCartIcon />
-                    <span>Add to cart</span>
-                </WishListTableBodyDataContentAddToCart>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentRemove>
+                    <span>
+                      {basket.find((bas) => bas._id === wish._id)
+                        ? "added to cart"
+                        : "add to cart"}
+                    </span>
+                  </WishListTableBodyDataContentAddToCart>
+                </WishListTableData>
+                <WishListTableData>
+                  <WishListTableBodyDataContentRemove
+                    onClick={() => removeWish(wish)}
+                  >
                     <WishListTableBodyDataContentRemoveIcon />
-                </WishListTableBodyDataContentRemove>
-            </WishListTableData>
-          </WishListTableRow>
-          <WishListTableRow>
-          <WishListTableData>
-              <WishListTableBodyDataContent>
-                <WishListTableBodyDataContentImageContainer>
-                  <WishListTableBodyDataContentImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/table/product-1.jpg" />
-                </WishListTableBodyDataContentImageContainer>
-                <WishListTableBodyDataContentTitle>
-                  Beige knitted elastic runner shoes
-                </WishListTableBodyDataContentTitle>
-              </WishListTableBodyDataContent>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentPrice>
-                    $ 84.00
-                </WishListTableBodyDataContentPrice>
-            </WishListTableData>
-            <WishListTableData> In stock</WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentAddToCart>
-                <WishListTableBodyDataContentAddToCartIcon />
-                    <span>Add to cart</span>
-                </WishListTableBodyDataContentAddToCart>
-            </WishListTableData>
-            <WishListTableData>
-                <WishListTableBodyDataContentRemove>
-                    <WishListTableBodyDataContentRemoveIcon />
-                </WishListTableBodyDataContentRemove>
-            </WishListTableData>
-          </WishListTableRow>
+                  </WishListTableBodyDataContentRemove>
+                </WishListTableData>
+              </WishListTableRow>
+            ))}
         </WishListTableBody>
-      </WishListTableContent>
+      </WishListTableContent> : <h1>No product in wishlist</h1>}
     </WishListTableContainer>
   );
 };

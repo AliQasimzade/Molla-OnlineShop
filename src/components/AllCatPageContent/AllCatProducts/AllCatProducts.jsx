@@ -14,225 +14,75 @@ import {
   ProductTop,
   ProductAddToCart,
   ProductAddToCartIcon,
-  ProductBottom
+  ProductBottom,
 } from "./AllCatProductsStyled";
+import { useSelector, useDispatch } from "react-redux";
+import { addBasket } from "../../../redux/slices/basketSlice";
+import { addWish } from "../../../redux/slices/wishListSlice";
 
 const AllCatProducts = () => {
+  const dispatch = useDispatch();
+  const products = useSelector(
+    (state) => state.persistedReducer.products.products
+  );
+  const wishlist = useSelector(
+    (state) => state.persistedReducer.wishlist.wishlist
+  );
+  const basket = useSelector((state) => state.persistedReducer.basket.basket);
+  const addedBasket = (pro) => {
+    dispatch(addBasket(pro));
+  };
+
+  const addedWishList = (pro) => {
+    dispatch(addWish(pro));
+  };
   return (
     <AllProductsContainer>
       <AllProductsWrapper>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-5.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-            <ProductBottom>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
-        <ProductCart to="/">
-          <ProductCartWrapper>
-            <ProductTop>
-              <ProductWishBtn>
-                <ProductWishIcon />
-              </ProductWishBtn>
-              <ProductCartImageContainer>
-                <ProductCartImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/products/product-4.jpg" />
-              </ProductCartImageContainer>
-              <ProductAddToCart>
-                <ProductAddToCartIcon />
-                <span>Add To Cart</span>
-              </ProductAddToCart>
-            </ProductTop>
-            <ProductBottom>
-            <ProductCatName>Women</ProductCatName>
-            <ProductTitle>Brown paperbag waist pencil skirt</ProductTitle>
-            <ProductPrice>$60.00</ProductPrice>
-            </ProductBottom>
-          </ProductCartWrapper>
-        </ProductCart>
+        {products.map((product) => (
+          <ProductCart key={product._id}>
+            <ProductCartWrapper>
+              <ProductTop>
+                <ProductWishBtn
+                  onClick={() => addedWishList(product)}
+                  className={
+                    wishlist.find((wish) => wish._id === product._id)
+                      ? "fill"
+                      : "no-fill"
+                  }
+                  disabled={
+                    wishlist.find((wish) => wish._id === product._id)
+                      ? true
+                      : false
+                  }
+                >
+                  <ProductWishIcon />
+                </ProductWishBtn>
+                <ProductCartImageContainer to="/">
+                  <ProductCartImage src={product.image} />
+                </ProductCartImageContainer>
+                <ProductAddToCart
+                  onClick={() => addedBasket(product)}
+                  disabled={
+                    basket.find((bas) => bas._id === product._id) ? true : false
+                  }
+                >
+                  <ProductAddToCartIcon />
+                  <span>
+                    {basket.find((bas) => bas._id === product._id)
+                      ? "added to cart"
+                      : "add to cart"}
+                  </span>
+                </ProductAddToCart>
+              </ProductTop>
+              <ProductBottom>
+                <ProductCatName>{product.title}</ProductCatName>
+                <ProductTitle>{product.description}</ProductTitle>
+                <ProductPrice>${product.price}</ProductPrice>
+              </ProductBottom>
+            </ProductCartWrapper>
+          </ProductCart>
+        ))}
       </AllProductsWrapper>
     </AllProductsContainer>
   );

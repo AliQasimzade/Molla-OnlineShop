@@ -73,10 +73,16 @@ const WishListTableBodyDataContent = styled.div`
 `;
 const WishListTableBodyDataContentImageContainer = styled.figure`
   margin-right: 28px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
 `;
 
-const WishListTableBodyDataContentImage = styled.img``;
+const WishListTableBodyDataContentImage = styled.img`
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+`;
 const WishListTableBodyDataContentTitle = styled.span`
   cursor: pointer;
   &:hover {

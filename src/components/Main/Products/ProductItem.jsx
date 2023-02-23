@@ -12,23 +12,59 @@ import {
   ProductWishIcon,
   ProductAddBtnIcon,
 } from "./ProductsStyled";
+import { addBasket } from "../../../redux/slices/basketSlice";
+import { addWish, removeWishItem } from "../../../redux/slices/wishListSlice";
+import { useDispatch, useSelector } from "react-redux";
+const ProductItem = ({ product }) => {
+  const dispatch = useDispatch();
+  const wishlist = useSelector(
+    (state) => state.persistedReducer.wishlist.wishlist
+  );
+  const basket = useSelector((state) => state.persistedReducer.basket.basket);
+  const addedBasket = (pro) => {
+    dispatch(addBasket(pro));
+    const copyWishlist = [...wishlist]
+    const findWishItem =  copyWishlist.find(wi => wi._id === pro._id);
+    if(findWishItem) {
+      dispatch(removeWishItem(findWishItem))
+    }
+  };
 
-const ProductItem = () => {
+  const addedWishList = (pro) => {
+    dispatch(addWish(pro));
+  };
   return (
-    <Product to="/product">
+    <Product>
       <ProductWrapper>
-        <ProductWish>
+        <ProductWish
+          onClick={() => addedWishList(product)}
+          className={
+            wishlist.find((wish) => wish._id === product._id)
+              ? "fill"
+              : "no-fill"
+          }
+          disabled={
+            wishlist.find((wish) => wish._id === product._id) ? true : false
+          }
+        >
           <ProductWishIcon />
         </ProductWish>
-        <ProductImageContainer>
-          <ProductImage src="http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/demos/demo-11/products/product-1.jpg" />
+        <ProductImageContainer to="/product">
+          <ProductImage src={product.image} />
         </ProductImageContainer>
       </ProductWrapper>
       <ProductInfo>
-        <ProductName>Flow Slim Armchair</ProductName>
-        <ProductPrice>$446.00</ProductPrice>
-        <ProductAddBtn className="add_btn">
-          <span>add to cart</span>
+        <ProductName>{product.title}</ProductName>
+        <ProductPrice>${product.price}</ProductPrice>
+        <ProductAddBtn
+          onClick={() => addedBasket(product)}
+          disabled={
+            basket.find((bas) => bas._id === product._id) ? true : false
+          }
+        >
+          {basket.find((bas) => bas._id === product._id)
+            ? "added to cart"
+            : "add to cart"}
           <ProductAddBtnIcon />
         </ProductAddBtn>
       </ProductInfo>
