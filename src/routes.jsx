@@ -25,6 +25,10 @@ const routes = [
     path: "all-categories",
     element: <AllCategories />,
   },
+  {
+    path:"/login",
+    element: Login seyfesinin adini yaz for ex (<Login />)
+  }
 ];
 
 export default routes;
