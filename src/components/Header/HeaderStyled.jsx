@@ -22,39 +22,7 @@ const LogoImage = styled.img`
   object-fit: cover;
 `;
 
-const SearchButton = styled.button`
-  border: 0;
-  outline: 0;
-  background: none;
-  display: flex;
-  align-items: center;
-  transition: 350ms linear;
-  cursor: pointer;
-  padding: 5px 10px 5px 15px;
-  &:hover {
-    color: #c96;
-  }
-  &.open {
-    border: 1px solid #ebebeb;
-    border-radius: 20px;
-    z-index: 1020;
-  }
-  &.open input{
-    display: flex;
-  }
-`;
-const SearchIcon = styled(VscSearch)`
-  width: 25px;
-  height: 25px;
-`;
-const SearchInput = styled.input.attrs({
-  type: "text",
-  placeholder: "Search in...",
-})`
-  display: none;
-  border: none;
-  outline: none;
-`;
+ 
 const BasketContainer = styled(Link)`
   width: 25px;
   height: 25px;
@@ -108,9 +76,6 @@ export {
   HeaderContainer,
   HeaderWrapper,
   LogoImage,
-  SearchIcon,
-  SearchButton,
-  SearchInput,
   HeaderLeft,
   LogoContainer,
   WishListContainer,

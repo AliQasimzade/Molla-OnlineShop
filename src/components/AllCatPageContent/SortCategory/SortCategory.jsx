@@ -8,7 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/slices/productsSlice";
 
-const SortCategory = () => {
+const SortCategory = ({setItems}) => {
   const dispatch = useDispatch();
   const products = useSelector(
     (state) => state.persistedReducer.products.products
@@ -19,9 +19,11 @@ const SortCategory = () => {
     if (e.target.value === "popularity") {
       const sortResult = copyProducts.sort((a, b) => a.price - b.price);
       dispatch(getProducts(sortResult));
+      setItems(sortResult)
     } else if (e.target.value === "rating") {
       const sortResult = copyProducts.sort((a, b) => b.price - a.price);
       dispatch(getProducts(sortResult));
+      setItems(sortResult);
     }
   };
   return (

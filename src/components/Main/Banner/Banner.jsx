@@ -13,8 +13,12 @@ import {
   CarouselItemButtonIcon,
 } from "./BannerStyled";
 import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+
 
 const Banner = () => {
+  const carouselImages = useSelector(state => state.persistedReducer.products.products.slice(0,2));
+  
   const [items, setItems] = useState(1);
   const carouselRef = useRef();
   const nextSlide = () => {
@@ -47,34 +51,23 @@ const Banner = () => {
         <NextArrowIcon />
       </NextArrow>
       <Carousel ref={carouselRef}>
-      <CarouselItem>
-          <CarouselItemInfo>
-            <CarouselItemHeading>SEASONAL PICKS</CarouselItemHeading>
-            <CarouselItemTitle>
-              Get All
-              <br />
-              The Good Stuff
-            </CarouselItemTitle>
-            <CarouselItemButton>
-              <span>DISCOVER MORE</span>
-              <CarouselItemButtonIcon />
-            </CarouselItemButton>
-          </CarouselItemInfo>
-        </CarouselItem>
-        <CarouselItem>
-          <CarouselItemInfo>
-            <CarouselItemHeading>SEASONAL PICKS</CarouselItemHeading>
-            <CarouselItemTitle>
-              Got All them
-              <br />
-              The Good Stuff
-            </CarouselItemTitle>
-            <CarouselItemButton>
-              <span>DISCOVER MORE</span>
-              <CarouselItemButtonIcon />
-            </CarouselItemButton>
-          </CarouselItemInfo>
-        </CarouselItem>
+     {carouselImages.map(car => (
+       <CarouselItem key={car._id} bgImage={car.image}>
+       <CarouselItemInfo>
+         <CarouselItemHeading>SEASONAL PICKS</CarouselItemHeading>
+         <CarouselItemTitle>
+           Get All
+           <br />
+           The Good Stuff
+         </CarouselItemTitle>
+         <CarouselItemButton to="/all-categories">
+           <span>DISCOVER MORE</span>
+           <CarouselItemButtonIcon />
+         </CarouselItemButton>
+       </CarouselItemInfo>
+     </CarouselItem>
+     ))}
+
         
       </Carousel>
     </BannerContainer>

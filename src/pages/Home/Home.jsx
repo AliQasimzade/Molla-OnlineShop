@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { Helmet } from "react-helmet-async";
 import HomeFilterProducts from "../../components/HomeFilterProducts/HomeFilterProducts";
 import Banner from "../../components/Main/Banner/Banner";
 import  Products  from "../../components/Main/Products/Products";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import {getProducts} from "../../redux/slices/productsSlice";
 import axios from "axios"
 const Home = () => {
@@ -16,14 +16,17 @@ const dispatch = useDispatch();
     };
     getAllProducts();
   }, []);
+
+  const products = useSelector(state => state.persistedReducer.products.products);
+  const [items, setItems] = useState(products);
   return (
     <div>
       <Helmet>
         <title>Home</title>
       </Helmet>
       <Banner />
-      <HomeFilterProducts />
-      <Products />
+      <HomeFilterProducts setItems={setItems}/>
+      <Products items={items}/>
     </div>
   );
 };

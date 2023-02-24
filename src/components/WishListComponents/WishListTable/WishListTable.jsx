@@ -34,11 +34,6 @@ const WishListTable = () => {
 
   const addToBasket = (pro) => {
     dispatch(addBasket(pro));
-    const copyWishlist = [...wishlist];
-    const findWishItem = copyWishlist.find((wi) => wi._id === pro._id);
-    if (findWishItem) {
-      dispatch(removeWishItem(findWishItem));
-    }
   };
   return (
     <WishListTableContainer>
@@ -74,6 +69,7 @@ const WishListTable = () => {
                 <WishListTableData>
                   <WishListTableBodyDataContentAddToCart
                     onClick={() => addToBasket(wish)}
+                    disabled={basket.find(bas => bas._id === wish._id) ? true: false}
                   >
                     <WishListTableBodyDataContentAddToCartIcon />
                     <span>

@@ -6,17 +6,14 @@ import {
   ProductsWrapper,
 } from "./ProductsStyled";
 import ProductItem from "./ProductItem";
-import { useSelector } from "react-redux";
 
-const Products = () => {
-  const products = useSelector(
-    (state) => state.persistedReducer.products.products
-  );
+
+const Products = ({items}) => {
 
   return (
     <ProductsContainer>
       <ProductsWrapper>
-        {products.map((product) => (
+        {items.map((product) => (
           <ProductItem key={product._id} product={product} />
         ))}
       </ProductsWrapper>

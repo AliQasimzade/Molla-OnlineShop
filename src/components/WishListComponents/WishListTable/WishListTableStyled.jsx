@@ -112,6 +112,12 @@ const WishListTableBodyDataContentAddToCart = styled.button`
     color: #fff;
     background-color: #c96;
   }
+  &:disabled {
+    background-color: #c96;
+    color: #ebebeb;
+    opacity: .55;
+    transition: 250ms linear;
+  }
   @media screen and (max-width: 991px) {
     width: fit-content;
     padding: 10px 50px;

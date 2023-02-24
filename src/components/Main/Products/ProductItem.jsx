@@ -13,7 +13,7 @@ import {
   ProductAddBtnIcon,
 } from "./ProductsStyled";
 import { addBasket } from "../../../redux/slices/basketSlice";
-import { addWish, removeWishItem } from "../../../redux/slices/wishListSlice";
+import { addWish } from "../../../redux/slices/wishListSlice";
 import { useDispatch, useSelector } from "react-redux";
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -23,11 +23,6 @@ const ProductItem = ({ product }) => {
   const basket = useSelector((state) => state.persistedReducer.basket.basket);
   const addedBasket = (pro) => {
     dispatch(addBasket(pro));
-    const copyWishlist = [...wishlist]
-    const findWishItem =  copyWishlist.find(wi => wi._id === pro._id);
-    if(findWishItem) {
-      dispatch(removeWishItem(findWishItem))
-    }
   };
 
   const addedWishList = (pro) => {
@@ -38,18 +33,13 @@ const ProductItem = ({ product }) => {
       <ProductWrapper>
         <ProductWish
           onClick={() => addedWishList(product)}
-          className={
-            wishlist.find((wish) => wish._id === product._id)
-              ? "fill"
-              : "no-fill"
-          }
           disabled={
             wishlist.find((wish) => wish._id === product._id) ? true : false
           }
         >
           <ProductWishIcon />
         </ProductWish>
-        <ProductImageContainer to="/product">
+        <ProductImageContainer to={`/products/${product._id}`}>
           <ProductImage src={product.image} />
         </ProductImageContainer>
       </ProductWrapper>
