@@ -3,6 +3,7 @@ import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import WishList from "./pages/Wishlist/WishList";
 import AllCategories from "./pages/AllCategories/AllCategories";
+import Login from "./pages/Login/Login"
 
 const routes = [
   {
@@ -27,7 +28,7 @@ const routes = [
   },
   {
     path:"/login",
-    element: Login seyfesinin adini yaz for ex (<Login />)
+    element: <Login />
   }
 ];
 
