@@ -7,9 +7,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
+     {location.pathname !== '/admin' &&  <Header />}
       {useRoutes(routes)}
-      <Footer />
+      {location.pathname !== '/admin' && <Footer />}
     </div>
   );
 };

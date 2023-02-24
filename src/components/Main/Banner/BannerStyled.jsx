@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const BannerContainer = styled.div`
   position: relative;
@@ -11,20 +12,36 @@ const CarouselItem = styled.div`
   flex-shrink: 0;
   height: 560px;
   position: relative;
-  background-image: url(http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/demos/demo-11/slider/slide-1.jpg);
+  background-image: linear-gradient(
+      to left,
+      rgba(253, 253, 253, 0),
+      #f9f9f9 70%
+    ),
+    url(${(props) => props.bgImage});
   display: flex;
   align-items: center;
-  background-size: cover;
-  background-position: center center;
+  background-position: center right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1);
+  @media screen and (max-width: 800px) {
+    background-image: linear-gradient(
+      to left,
+      rgba(253, 253, 253, 0),
+      #f9f9f9 100%
+    ),
+    url(${(props) => props.bgImage});
+  }
 `;
 
 const CarouselItemInfo = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 170px;
-  @media screen and (max-width: 1049px){
+  @media screen and (max-width: 1049px) {
     margin-left: 10px;
-     margin-top: 270px;
+    margin-top: 270px;
   }
 `;
 
@@ -48,7 +65,7 @@ const NextArrow = styled.button`
 `;
 const NextArrowIcon = styled(GrNext)``;
 const PrevArrow = styled.button`
-    border: 0;
+  border: 0;
   outline: 0;
   background: none;
   position: absolute;
@@ -74,7 +91,7 @@ const CarouselItemTitle = styled.h1`
   margin-bottom: 17px;
   font-size: 40px;
 `;
-const CarouselItemButton = styled.a`
+const CarouselItemButton = styled(Link)`
   color: #c96;
   background-color: transparent;
   background-image: none;
@@ -91,7 +108,7 @@ const CarouselItemButton = styled.a`
     background-color: #c96;
     color: #fff;
   }
-  @media screen and (max-width: 825px){
+  @media screen and (max-width: 825px) {
     background-color: #fff;
   }
 `;
@@ -99,7 +116,7 @@ const CarouselItemButtonIcon = styled(BsArrowRight)``;
 const Carousel = styled.div`
   display: flex;
   position: relative;
-  transition: 400ms ;
+  transition: 400ms;
 `;
 export {
   BannerContainer,

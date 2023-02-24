@@ -15,7 +15,7 @@ const ProductsWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 const ProductWish = styled.button`
   position: absolute;
@@ -36,10 +36,17 @@ const ProductWish = styled.button`
   &:hover svg {
     fill: #c96 !important;
   }
-  &.fill svg{
+  &:disabled svg{
     fill: #c96 !important;
   }
 `;
+const ProductWishIcon = styled(FiHeart)`
+  stroke: #c96;
+  width: 20px;
+  height: 20px;
+`;
+const ProductAddBtnIcon = styled(BsArrowRight)``;
+
 const ProductAddBtn = styled.button`
   visibility: hidden;
   transition: 250ms linear;
@@ -62,11 +69,15 @@ const ProductAddBtn = styled.button`
     background-color: #c96;
     color:#ebebeb;
     opacity: .88;
+    transition: 250ms linear;
+    & ${ProductAddBtnIcon} {
+      visibility: hidden;
+      transition: 250ms linear;
+    }
   }
 `;
 const Product = styled.div`
   margin: 10px;
-  width: 20%;
   &:hover {
     & ${ProductWish} {
       top: 20px;
@@ -77,16 +88,6 @@ const Product = styled.div`
     visibility: visible;
     }
   }
-  @media screen and (max-width: 960px) {
-   width: 30%;
-  }
- 
- @media screen and (max-width: 600px) {
-   width: 45%;
- }
- @media screen and (max-width: 400px) {
-  width: 44%;
- }
   
 `;
 const MoreProductsBtnIcon = styled(SlRefresh)`
@@ -137,11 +138,7 @@ const ProductPrice = styled.p`
   color: #cccccc;
 `;
 
-const ProductWishIcon = styled(FiHeart)`
-  stroke: #c96;
-  width: 20px;
-  height: 20px;
-`;
+
 const ProductImageContainer = styled(Link)`
 display: block;
 height: 187px;
@@ -151,7 +148,7 @@ const ProductImage = styled.img`
  height: 100%;
  object-fit: cover;
 `;
-const ProductAddBtnIcon = styled(BsArrowRight)``;
+
 export {
   ProductAddBtnIcon,
   ProductsContainer,

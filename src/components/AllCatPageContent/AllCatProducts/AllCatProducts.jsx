@@ -20,7 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addBasket } from "../../../redux/slices/basketSlice";
 import { addWish } from "../../../redux/slices/wishListSlice";
 
-const AllCatProducts = () => {
+const AllCatProducts = ({items, setItems}) => {
   const dispatch = useDispatch();
   const products = useSelector(
     (state) => state.persistedReducer.products.products
@@ -39,17 +39,12 @@ const AllCatProducts = () => {
   return (
     <AllProductsContainer>
       <AllProductsWrapper>
-        {products.map((product) => (
+        {items.map((product) => (
           <ProductCart key={product._id}>
             <ProductCartWrapper>
               <ProductTop>
                 <ProductWishBtn
                   onClick={() => addedWishList(product)}
-                  className={
-                    wishlist.find((wish) => wish._id === product._id)
-                      ? "fill"
-                      : "no-fill"
-                  }
                   disabled={
                     wishlist.find((wish) => wish._id === product._id)
                       ? true
@@ -58,7 +53,7 @@ const AllCatProducts = () => {
                 >
                   <ProductWishIcon />
                 </ProductWishBtn>
-                <ProductCartImageContainer to="/">
+                <ProductCartImageContainer to={`/products/${product._id}`}>
                   <ProductCartImage src={product.image} />
                 </ProductCartImageContainer>
                 <ProductAddToCart
