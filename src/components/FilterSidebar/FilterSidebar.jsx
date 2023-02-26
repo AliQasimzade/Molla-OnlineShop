@@ -7,7 +7,6 @@ import {
   FilterCategory,
   FilterItem,
   FilterCategoryWrapper,
-  FilterClearBtn,
   FilterSidebarContainer,
   FilterSidebarWrapper,
   FilterTitle,
@@ -45,16 +44,11 @@ const FilterSidebar = ({ setItems }) => {
     setShow(!show);
   };
 
-  const resetFilter = () => {
-    setMinVal(min?.price)
-    setMaxVal(max?.price)
-  };
   return (
     <FilterSidebarContainer>
       <FilterSidebarWrapper>
         <FilterWidgetClean>
-          <FilterTitle>Filters:</FilterTitle>
-          <FilterClearBtn onClick={resetFilter}>Clean All</FilterClearBtn>
+          <FilterTitle>Filters</FilterTitle>
         </FilterWidgetClean>
         <FilterCategory>
           <CategoryTitle>

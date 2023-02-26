@@ -65,14 +65,6 @@ const FilterItem = styled.div`
   margin-bottom: 10px;
 `;
 
-const FilterClearBtn = styled.button`
-  color: #cc9966;
-  font-size: 12px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-  background: none;
-`;
 
 const FilterSidebarWrapper = styled.div`
   width: 100%;
@@ -127,7 +119,6 @@ export {
   FilterWidgetClean,
   FilterSidebarWrapper,
   FilterTitle,
-  FilterClearBtn,
   FilterPriceText,
   FilterPriceRange,
   FilterItemCount,
