@@ -113,7 +113,7 @@ const HomeFilterProducts = ({ setItems }) => {
               </PriceRange>
               <div style={{ padding: "10px 0" }}>
                 <RangeSlider
-                  min={min.price-3}
+                  min={min?.price-3}
                   defaultValue={[minVal, maxVal]}
                   onInput={(values) => {
                     setMinVal(values[0]);
@@ -126,7 +126,7 @@ const HomeFilterProducts = ({ setItems }) => {
                     console.log(filterProducts);
                     setItems(filterProducts);
                   }}
-                  max={max.price+90}
+                  max={max?.price+90}
                 />
               </div>
             </CategorySectionOne>

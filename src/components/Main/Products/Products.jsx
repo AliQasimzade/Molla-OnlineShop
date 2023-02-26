@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const Products = ({items}) => {
-
+console.log(items)
 
   return (
     <ProductsContainer>
@@ -28,7 +28,7 @@ const Products = ({items}) => {
         theme="light"
       />
       <ProductsWrapper>
-        {items.map((product) => (
+        {items.length > 0 && items.map((product) => (
           <ProductItem key={product._id} product={product} />
         ))}
       </ProductsWrapper>
