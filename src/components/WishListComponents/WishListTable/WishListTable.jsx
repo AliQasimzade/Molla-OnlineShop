@@ -33,7 +33,8 @@ const WishListTable = () => {
   };
 
   const addToBasket = (pro) => {
-    dispatch(addBasket(pro));
+    const copyPro = { ...pro, count: 1 };
+    dispatch(addBasket(copyPro));
   };
   return (
     <WishListTableContainer>
