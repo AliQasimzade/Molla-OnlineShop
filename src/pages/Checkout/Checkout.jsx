@@ -23,7 +23,7 @@ const Checkout = () => {
         </CheckOutLi>
         <ChekOutLiIcon><BsChevronRight/></ChekOutLiIcon>
         <CheckOutLi>
-          <CheackOutIcon to="checkout">Checkout</CheackOutIcon>
+          <CheackOutIcon to="/checkout">Checkout</CheackOutIcon>
         </CheckOutLi>
       </CheckOutUl>
       <Line></Line>
