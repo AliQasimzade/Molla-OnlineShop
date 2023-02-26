@@ -125,6 +125,7 @@ const ProductCatName = styled.div`
 const ProductTitle = styled.p`
   text-align: center;
   width: 91%;
+  word-break: break-all;
   margin: 0 auto;
   color: #333333;
   transition: 250ms linear;

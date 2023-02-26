@@ -46,7 +46,8 @@ const FilterSidebar = ({ setItems }) => {
   };
 
   const resetFilter = () => {
-    location.reload();
+    setMinVal(min?.price)
+    setMaxVal(max?.price)
   };
   return (
     <FilterSidebarContainer>

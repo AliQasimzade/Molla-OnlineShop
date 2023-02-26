@@ -134,6 +134,7 @@ const ProductInfo = styled.div`
 
 const ProductName = styled.p`
   color: #666;
+  word-break: break-all;
   transition: 250ms linear;
   &:hover {
     color: #c96;

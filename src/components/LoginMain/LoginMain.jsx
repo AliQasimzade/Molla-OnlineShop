@@ -336,7 +336,7 @@ const LoginMain = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label>Password *</Label>
-                  <Input ref={registerPasswordRef} />
+                  <Input type="password" ref={registerPasswordRef} />
                 </FormGroup>
                 <Button onClick={handleRegister}>
                   Sign up
