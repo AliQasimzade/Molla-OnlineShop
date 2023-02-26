@@ -107,7 +107,7 @@ const CartMain = () => {
               <TotalTitle>Total:</TotalTitle>
               <TotalTitle>${totalPrice}</TotalTitle>
             </PriceContainer>
-            <CheckoutLink to="/checkout"> Proceed to checkout</CheckoutLink>
+            <CheckoutLink to="checkout"> Proceed to checkout</CheckoutLink>
           </Card_container>
         </Container>
       ) : (
