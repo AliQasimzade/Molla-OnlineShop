@@ -4,38 +4,36 @@ import {
   BasketCount,
   BasketIcon,
   HeaderLeft,
-  SearchButton,
-  SearchIcon,
-  SearchInput,
+  UserContainer,
+  UserIcon,
+  UserName,
   WishListContainer,
   WishListCount,
   WishListIcon,
+  UserLogout,
 } from "./HeaderStyled";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutedUser } from "../../redux/slices/userSlice";
 
 const HeaderLinks = () => {
-  const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
   const basketCount = useSelector(
     (state) => state.persistedReducer.basket.basket.length
   );
-  const wishlistCount = useSelector(state => state.persistedReducer.wishlist.wishlist.length)
-  const toggleSearchBox = () => {
-    setOpen(true);
-  };
+  const wishlistCount = useSelector(
+    (state) => state.persistedReducer.wishlist.wishlist.length
+  );
 
-  const closeSearchBox = () => {
-    setOpen(false);
+  const userName = useSelector(
+    (state) => state.persistedReducer.user.user
+  );
+
+  const logoutUser = () => {
+    dispatch(logoutedUser());
   };
   return (
     <HeaderLeft>
-      <SearchButton
-        className={open ? "open" : null}
-        onClick={toggleSearchBox}
-        onMouseLeave={closeSearchBox}
-      >
-        <SearchInput />
-        <SearchIcon />
-      </SearchButton>
       <WishListContainer to="/wishlist">
         <WishListIcon />
         <WishListCount>{wishlistCount}</WishListCount>
@@ -44,6 +42,17 @@ const HeaderLinks = () => {
         <BasketIcon />
         <BasketCount>{basketCount}</BasketCount>
       </BasketContainer>
+      {!userName.userName && (
+        <UserContainer to="/login">
+          <UserIcon />
+        </UserContainer>
+      )}
+      {userName?.userName && (
+        <div className="profile" style={{ position: "relative" }}>
+          <UserName onClick={() => setShow(!show)}>{userName.userName}</UserName>
+          {show && <UserLogout onClick={logoutUser}>Logout</UserLogout>}
+        </div>
+      )}
     </HeaderLeft>
   );
 };

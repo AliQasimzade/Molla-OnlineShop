@@ -15,7 +15,13 @@ const ProductsWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  @media screen and (max-width: 519px) {
+    justify-content: center;
+  }
+  @media screen and (max-width: 678px) {
+    justify-content: center;
+  }
 `;
 const ProductWish = styled.button`
   position: absolute;
@@ -36,10 +42,17 @@ const ProductWish = styled.button`
   &:hover svg {
     fill: #c96 !important;
   }
-  &.fill svg{
+  &:disabled svg {
     fill: #c96 !important;
   }
 `;
+const ProductWishIcon = styled(FiHeart)`
+  stroke: #c96;
+  width: 20px;
+  height: 20px;
+`;
+const ProductAddBtnIcon = styled(BsArrowRight)``;
+
 const ProductAddBtn = styled.button`
   visibility: hidden;
   transition: 250ms linear;
@@ -60,37 +73,31 @@ const ProductAddBtn = styled.button`
   }
   &:disabled {
     background-color: #c96;
-    color:#ebebeb;
-    opacity: .88;
+    color: #ebebeb;
+    opacity: 0.88;
+    transition: 250ms linear;
+    & ${ProductAddBtnIcon} {
+      visibility: hidden;
+      transition: 250ms linear;
+    }
   }
 `;
 const Product = styled.div`
+  width: 206px;
   margin: 10px;
-  width: 20%;
   &:hover {
     & ${ProductWish} {
       top: 20px;
       visibility: visible;
     }
     & ${ProductAddBtn} {
-    transform: translateY(0);
-    visibility: visible;
+      transform: translateY(0);
+      visibility: visible;
     }
   }
-  @media screen and (max-width: 960px) {
-   width: 30%;
-  }
- 
- @media screen and (max-width: 600px) {
-   width: 45%;
- }
- @media screen and (max-width: 400px) {
-  width: 44%;
- }
-  
 `;
 const MoreProductsBtnIcon = styled(SlRefresh)`
- transition: 250ms linear;
+  transition: 250ms linear;
 `;
 const MoreProductsBtn = styled(Link)`
   border: none;
@@ -112,7 +119,7 @@ const MoreProductsBtn = styled(Link)`
     background-color: #fafafa;
     border-color: #d7d7d7;
     & ${MoreProductsBtnIcon} {
-     transform: rotate(90deg);
+      transform: rotate(90deg);
     }
   }
 `;
@@ -137,21 +144,15 @@ const ProductPrice = styled.p`
   color: #cccccc;
 `;
 
-const ProductWishIcon = styled(FiHeart)`
-  stroke: #c96;
-  width: 20px;
-  height: 20px;
-`;
 const ProductImageContainer = styled(Link)`
-display: block;
-height: 187px;
-`
-const ProductImage = styled.img`
- width: 100%;
- height: 100%;
- object-fit: cover;
+  display: block;
 `;
-const ProductAddBtnIcon = styled(BsArrowRight)``;
+const ProductImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export {
   ProductAddBtnIcon,
   ProductsContainer,

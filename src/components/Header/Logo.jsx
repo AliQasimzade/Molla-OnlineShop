@@ -3,7 +3,7 @@ import { LogoImage,LogoContainer } from './HeaderStyled'
 import ImageLogo from "../../assets/images/logo.png"
 const Logo = () => {
   return (
-    <LogoContainer>
+    <LogoContainer to="/">
       <LogoImage src={ImageLogo} alt="logo"/>
     </LogoContainer>
   )

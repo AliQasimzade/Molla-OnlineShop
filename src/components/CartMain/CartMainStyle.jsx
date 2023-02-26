@@ -83,6 +83,9 @@ const Thead = styled.p`
 
 const ProductImage = styled.img`
 margin-right: 30px;
+width: 100%;
+height: 100%;
+object-fit: cover;
 `
 const ProductInfo = styled.p`
     color: #333333;
@@ -187,6 +190,8 @@ const CheckoutLink = styled(Link)`
  const ProductLink = styled(Link)`
  display:flex;
  align-items: center;
+ width: 60px;
+ height: 60px;
  `
 export {
     Container,

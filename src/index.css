@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,16 @@
   text-decoration: none;
   list-style: none;
 }
-
+@media (min-width: 769px) and (max-width: 1024px) {
+ body .form-control {
+    width: 97% !important;
+  }
+}
+@media screen and (max-width:501px) {
+  html body .form-control {
+    width: 100% !important;
+  }
+}
 .range-slider {
   height: 4px;
 }
@@ -17,4 +27,13 @@
 }
 .range-slider .range-slider__range {
   background-color: #333;
+}
+
+.form-control  {
+  border: 1px solid black !important;
+  border-radius: 0 !important;
+  width: 90% !important;
+}
+.form-control:focus {
+  border-color: #c96 !important;
 }

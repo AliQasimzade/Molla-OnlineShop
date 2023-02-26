@@ -6,17 +6,29 @@ import {
   ProductsWrapper,
 } from "./ProductsStyled";
 import ProductItem from "./ProductItem";
-import { useSelector } from "react-redux";
+import {ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 
-const Products = () => {
-  const products = useSelector(
-    (state) => state.persistedReducer.products.products
-  );
+
+const Products = ({items}) => {
+
 
   return (
     <ProductsContainer>
+       <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme="light"
+      />
       <ProductsWrapper>
-        {products.map((product) => (
+        {items.map((product) => (
           <ProductItem key={product._id} product={product} />
         ))}
       </ProductsWrapper>

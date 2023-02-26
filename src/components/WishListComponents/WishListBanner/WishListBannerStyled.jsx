@@ -1,8 +1,8 @@
 import styled from "styled-components";
-
+import bgImage from "../../../assets/images/page-header-bg.jpg"
 const WishListBannerContainer = styled.div`
  width: 100%;
-  background-image: url(http://127.0.0.1:5500/portotheme.com/html/molla/assets/images/page-header-bg.jpg);
+  background-image: url(${bgImage});
   background-color: #ebebeb;
   background-size: cover;
   background-position: center center;

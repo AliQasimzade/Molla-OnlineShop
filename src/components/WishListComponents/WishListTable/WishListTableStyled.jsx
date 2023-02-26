@@ -39,6 +39,7 @@ const WishListTableRow = styled.tr`
 `;
 const WishListTableData = styled.td`
   padding: 30px 0;
+  border: none;
   &:nth-child(3) {
     color: #a6c76c;
     font-weight: 400;
@@ -111,6 +112,12 @@ const WishListTableBodyDataContentAddToCart = styled.button`
   &:hover {
     color: #fff;
     background-color: #c96;
+  }
+  &:disabled {
+    background-color: #c96;
+    color: #ebebeb;
+    opacity: .55;
+    transition: 250ms linear;
   }
   @media screen and (max-width: 991px) {
     width: fit-content;

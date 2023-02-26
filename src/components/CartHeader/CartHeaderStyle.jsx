@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import bgImage from "../../assets/images/page-header-bg.jpg"
+
 const Header = styled.div`
 padding: 4.6rem 0 5rem;
-background: url("https://portotheme.com/html/molla/assets/images/page-header-bg.jpg");
+background: url(${bgImage});
 background-size: cover;
 background-position: center center;
 `;

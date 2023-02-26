@@ -1,29 +1,17 @@
-import React, {useEffect} from "react";
-import { Helmet } from "react-helmet-async";
-import HomeFilterProducts from "../../components/HomeFilterProducts/HomeFilterProducts";
+import React, {useState} from "react";
 import Banner from "../../components/Main/Banner/Banner";
-import  Products  from "../../components/Main/Products/Products";
-import { useDispatch } from "react-redux";
-import {getProducts} from "../../redux/slices/productsSlice";
-import axios from "axios"
+import HomeFilterProducts from "../../components/HomeFilterProducts/HomeFilterProducts";
+import Products from "../../components/Main/Products/Products";
+import {useSelector} from "react-redux"
 const Home = () => {
-const dispatch = useDispatch();
-
-  useEffect(() => {
-    const getAllProducts = async () => {
-      const response = await axios.get("http://localhost:7777/api/products");
-      dispatch(getProducts(response.data));
-    };
-    getAllProducts();
-  }, []);
+  const products = useSelector(state => state.persistedReducer.products.products);
+  const copyProducts = products.length > 0 ? [...products] : []
+const [items, setItems] = useState(copyProducts)
   return (
     <div>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
       <Banner />
-      <HomeFilterProducts />
-      <Products />
+      <HomeFilterProducts setItems={setItems}/>
+      <Products items={items}/>
     </div>
   );
 };

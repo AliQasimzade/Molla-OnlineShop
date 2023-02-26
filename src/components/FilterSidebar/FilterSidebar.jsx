@@ -19,14 +19,23 @@ import {
   FilterPriceRange,
   FilterPriceMinValue,
   FilterPriceMaxValue,
-  FilterCategoryWrapperCopy
+  FilterCategoryWrapperCopy,
 } from "./FilterSidebarStyled";
 
-const FilterSidebar = () => {
+import { useSelector } from "react-redux";
+const FilterSidebar = ({ setItems }) => {
+  const products = useSelector(
+    (state) => state.persistedReducer.products.products
+  );
+  const copyProducts = products.length > 0 ? [...products] : [];
+
+  const min = copyProducts.sort((a, b) => a.price - b.price)[0];
+  const max = copyProducts.sort((a, b) => b.price - a.price)[0];
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
-  const [minVal, setMinVal] = useState(0)
-  const [maxVal, setMaxVal] = useState(700)
+
+  const [minVal, setMinVal] = useState(min.price);
+  const [maxVal, setMaxVal] = useState(max.price);
 
   const toggleCategory = () => {
     setOpen(!open);
@@ -35,12 +44,17 @@ const FilterSidebar = () => {
   const togglePrice = () => {
     setShow(!show);
   };
+
+  const resetFilter = () => {
+    location.reload()
+   
+  };
   return (
     <FilterSidebarContainer>
       <FilterSidebarWrapper>
         <FilterWidgetClean>
           <FilterTitle>Filters:</FilterTitle>
-          <FilterClearBtn>Clean All</FilterClearBtn>
+          <FilterClearBtn onClick={resetFilter}>Clean All</FilterClearBtn>
         </FilterWidgetClean>
         <FilterCategory>
           <CategoryTitle>
@@ -110,16 +124,34 @@ const FilterSidebar = () => {
             <FilterPriceText>
               <span>Price Range: </span>
               <FilterPriceRange>
-                <FilterPriceMinValue><span>$</span>{minVal}</FilterPriceMinValue>
+                <FilterPriceMinValue>
+                  <span>$</span>
+                  {minVal}
+                </FilterPriceMinValue>
                 <span>-</span>
-                <FilterPriceMaxValue><span>$</span>{maxVal}</FilterPriceMaxValue>
+                <FilterPriceMaxValue>
+                  <span>$</span>
+                  {maxVal}
+                </FilterPriceMaxValue>
               </FilterPriceRange>
             </FilterPriceText>
             <div style={{ padding: "10px 0" }}>
-              <RangeSlider min={0} defaultValue={[minVal, maxVal]} onInput={(values)=> {
-                setMinVal(values[0])
-                setMaxVal(values[1])
-              }} max={1000} />
+              <RangeSlider
+                min={min.price}
+                defaultValue={[minVal, maxVal]}
+                onInput={(values) => {
+                  setMinVal(values[0]);
+                  setMaxVal(values[1]);
+                  const filterProducts = copyProducts.filter((product) => {
+                    if (minVal <= product.price && product.price <= maxVal) {
+                      return product;
+                    }
+                  });
+
+                  setItems(filterProducts);
+                }}
+                max={max.price}
+              />
             </div>
           </FilterCategoryWrapperCopy>
         </FilterCategory>

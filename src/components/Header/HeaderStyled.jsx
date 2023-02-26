@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { VscSearch } from "react-icons/vsc";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 const HeaderContainer = styled.header`
@@ -22,39 +21,6 @@ const LogoImage = styled.img`
   object-fit: cover;
 `;
 
-const SearchButton = styled.button`
-  border: 0;
-  outline: 0;
-  background: none;
-  display: flex;
-  align-items: center;
-  transition: 350ms linear;
-  cursor: pointer;
-  padding: 5px 10px 5px 15px;
-  &:hover {
-    color: #c96;
-  }
-  &.open {
-    border: 1px solid #ebebeb;
-    border-radius: 20px;
-    z-index: 1020;
-  }
-  &.open input{
-    display: flex;
-  }
-`;
-const SearchIcon = styled(VscSearch)`
-  width: 25px;
-  height: 25px;
-`;
-const SearchInput = styled.input.attrs({
-  type: "text",
-  placeholder: "Search in...",
-})`
-  display: none;
-  border: none;
-  outline: none;
-`;
 const BasketContainer = styled(Link)`
   width: 25px;
   height: 25px;
@@ -74,6 +40,51 @@ const BasketIcon = styled(AiOutlineShoppingCart)`
   width: 100%;
   height: 100%;
 `;
+const UserIcon = styled(AiOutlineUser)`
+  width: 100%;
+  height: 100%;
+  color: #333333;
+  transition: 250ms linear;
+`;
+const UserContainer = styled(Link)`
+  width: 25px;
+  height: 25px;
+  &:hover ${UserIcon} {
+    color: #c96;
+  }
+`;
+
+const UserLogout = styled.button`
+  position: absolute;
+  top: 30px;
+  left: -21px;
+  cursor: pointer;
+  border: none;
+  outline: 0;
+  color: #fff;
+  background: #c96;
+  border-radius: 6px;
+  padding: 5px;
+  z-index: 4;
+  transition: 250ms linear;
+  &:hover {
+    opacity: 0.88;
+  }
+`;
+const UserName = styled.button`
+  border: none;
+  outline: 0;
+  background-color: #c96;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 250ms linear;
+  &:hover {
+    opacity: 0.88;
+  }
+`;
+
 const BasketCount = styled.div`
   position: absolute;
   width: 15px;
@@ -108,9 +119,6 @@ export {
   HeaderContainer,
   HeaderWrapper,
   LogoImage,
-  SearchIcon,
-  SearchButton,
-  SearchInput,
   HeaderLeft,
   LogoContainer,
   WishListContainer,
@@ -118,5 +126,9 @@ export {
   BasketContainer,
   BasketIcon,
   BasketCount,
+  UserContainer,
+  UserIcon,
+  UserName,
+  UserLogout,
   WishListCount,
 };

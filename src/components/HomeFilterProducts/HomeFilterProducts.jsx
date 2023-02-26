@@ -16,11 +16,19 @@ import {
 } from "./HomeFilterStyled";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
+import { useSelector } from "react-redux";
 
-const HomeFilterProducts = () => {
+const HomeFilterProducts = ({ setItems }) => {
+  const products = useSelector(
+    (state) => state.persistedReducer.products.products
+  );
+  const copyProducts = products.length > 0 ? [...products] : []
+
+  const min = copyProducts.sort((a, b) => a.price - b.price)[0];
+  const max = copyProducts.sort((a, b) => b.price - a.price)[0];
   const [close, setClose] = useState(false);
-  const [minVal, setMinVal] = useState(0);
-  const [maxVal, setMaxVal] = useState(700);
+  const [minVal, setMinVal] = useState(min?.price);
+  const [maxVal, setMaxVal] = useState(max?.price);
   return (
     <HomeFilterProductsContainer>
       <HomeFilterProductsWrapper>
@@ -33,7 +41,7 @@ const HomeFilterProducts = () => {
         <FilterCategoryContent>
           <FilterCategoryContentWrapper className={close && "open"}>
             <CategorySectionOne>
-              <p style={{padding:'10px 0 20px 0'}}>Category:</p>
+              <p style={{ padding: "10px 0 20px 0" }}>Category:</p>
               <CategorySectionItem>
                 <button
                   style={{
@@ -105,13 +113,20 @@ const HomeFilterProducts = () => {
               </PriceRange>
               <div style={{ padding: "10px 0" }}>
                 <RangeSlider
-                  min={0}
+                    min={min?.price}
                   defaultValue={[minVal, maxVal]}
                   onInput={(values) => {
                     setMinVal(values[0]);
                     setMaxVal(values[1]);
+                    const filterProducts = copyProducts.filter((product) => {
+                      if (minVal <= product.price && product.price <= maxVal) {
+                        return product;
+                      }
+                    });
+
+                    setItems(filterProducts);
                   }}
-                  max={1000}
+                  max={max?.price}
                 />
               </div>
             </CategorySectionOne>

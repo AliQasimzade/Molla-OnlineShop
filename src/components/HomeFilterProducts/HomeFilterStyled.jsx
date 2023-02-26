@@ -6,10 +6,16 @@ const HomeFilterProductsContainer = styled.div`
   margin-top: 40px;
 `;
 const HomeFilterProductsWrapper = styled.div`
-  max-width: 1043px;
+  max-width: 1200px;
   padding-left: 10px;
   padding-right: 10px;
   margin: 0 auto;
+  @media screen and (max-width:768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 `;
 const FilterToggle = styled.button`
   display: flex;
@@ -24,7 +30,11 @@ const FilterToggle = styled.button`
   }
 `;
 
-const FilterCategoryContent = styled.div``;
+const FilterCategoryContent = styled.div`
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
 const FilterCategoryContentWrapper = styled.div`
   display: flex;
   gap: 40px;
@@ -36,6 +46,12 @@ const FilterCategoryContentWrapper = styled.div`
   &.open {
     height: 220px;
     visibility: visible;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    &.open {
+      height: 420px;
+    }
   }
 `;
 
@@ -58,6 +74,10 @@ const CategorySectionOne = styled.div`
   flex-direction: column;
   width: 285px;
   border-top: 1px solid #ebebeb;
+  @media screen and (max-width:768px) {
+    width: 100%;
+  }
+
 `;
 const CategorySectionItem = styled.div`
   width: 100%;

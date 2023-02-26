@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
 import {
   AllProductsContainer,
   AllProductsWrapper,
@@ -20,7 +21,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addBasket } from "../../../redux/slices/basketSlice";
 import { addWish } from "../../../redux/slices/wishListSlice";
 
-const AllCatProducts = () => {
+const AllCatProducts = ({items, setItems}) => {
   const dispatch = useDispatch();
   const products = useSelector(
     (state) => state.persistedReducer.products.products
@@ -28,28 +29,63 @@ const AllCatProducts = () => {
   const wishlist = useSelector(
     (state) => state.persistedReducer.wishlist.wishlist
   );
+  const user = useSelector(state => state.persistedReducer.user.user)
   const basket = useSelector((state) => state.persistedReducer.basket.basket);
   const addedBasket = (pro) => {
-    dispatch(addBasket(pro));
+    if(!user.userName) {
+      toast.warning("Please Login !", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }else {
+      const copyPro = {...pro, count:1}
+      dispatch(addBasket(copyPro));
+    }
   };
 
   const addedWishList = (pro) => {
-    dispatch(addWish(pro));
+    if(!user.userName) {
+      toast.warning("Please Login !", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }else {
+      dispatch(addWish(pro));
+    }
   };
   return (
     <AllProductsContainer>
+       <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme="light"
+      />
       <AllProductsWrapper>
-        {products.map((product) => (
+        {items.map((product) => (
           <ProductCart key={product._id}>
             <ProductCartWrapper>
               <ProductTop>
                 <ProductWishBtn
                   onClick={() => addedWishList(product)}
-                  className={
-                    wishlist.find((wish) => wish._id === product._id)
-                      ? "fill"
-                      : "no-fill"
-                  }
                   disabled={
                     wishlist.find((wish) => wish._id === product._id)
                       ? true
@@ -58,7 +94,7 @@ const AllCatProducts = () => {
                 >
                   <ProductWishIcon />
                 </ProductWishBtn>
-                <ProductCartImageContainer to="/">
+                <ProductCartImageContainer to={`/products/${product._id}`}>
                   <ProductCartImage src={product.image} />
                 </ProductCartImageContainer>
                 <ProductAddToCart
