@@ -135,6 +135,7 @@ const ProductInfo = styled.div`
 const ProductName = styled.p`
   color: #666;
   word-break: break-all;
+  margin-top: 10px;
   transition: 250ms linear;
   &:hover {
     color: #c96;
@@ -146,11 +147,14 @@ const ProductPrice = styled.p`
 `;
 
 const ProductImageContainer = styled(Link)`
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const ProductImage = styled.img`
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 94%;
+  max-height: 200px;
   object-fit: cover;
 `;
 

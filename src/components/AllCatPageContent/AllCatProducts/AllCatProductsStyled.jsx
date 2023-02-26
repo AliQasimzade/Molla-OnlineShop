@@ -66,7 +66,7 @@ const ProductAddToCart = styled.button`
   &:disabled {
     background-color: #c96;
     color: #ebebeb;
-    opacity: .55;
+    opacity: 0.55;
     transition: 250ms linear;
     & ${ProductAddToCartIcon} {
       visibility: hidden;
@@ -74,7 +74,6 @@ const ProductAddToCart = styled.button`
     }
   }
 `;
-
 
 const ProductTop = styled.div`
   position: relative;
@@ -109,11 +108,14 @@ const ProductCart = styled.div`
 const ProductCartWrapper = styled.div``;
 
 const ProductCartImageContainer = styled(Link)`
-display: block;
- height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const ProductCartImage = styled.img`
-  width: 100%;
+  width: auto;
+  height: 94%;
+  max-height: 200px;
   object-fit: cover;
 `;
 
@@ -125,6 +127,7 @@ const ProductCatName = styled.div`
 const ProductTitle = styled.p`
   text-align: center;
   width: 91%;
+  margin-top: 6px;
   word-break: break-all;
   margin: 0 auto;
   color: #333333;
