@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import ProductPageBreadCrumb from "./ProductPageBreadCrumb";
 import {
   ProductPageContainer,
@@ -31,7 +31,13 @@ const ProductPage = () => {
     (state) => state.persistedReducer.wishlist.wishlist
   );
   const user = useSelector((state) => state.persistedReducer.user.user);
-  const findInfo = [...products].find((product) => product._id === _id);
+  const [findInfo,setFindInfo] = useState(false)
+  useEffect(() => {
+   if(products) {
+    const res = [...products].find((product) => product._id === _id);
+    setFindInfo(res)
+   }
+  },[products])
 
   const addedBasket = (pro) => {
     if (!user.userName) {
@@ -83,7 +89,7 @@ const ProductPage = () => {
       />
       <ProductPageWrapper>
         <ProductPageBreadCrumb />
-        <ProductPageContent>
+       {findInfo !== false &&  <ProductPageContent>
           <Zoom
             img={findInfo?.image}
             transitionTime={0.26}
@@ -93,9 +99,9 @@ const ProductPage = () => {
           />
           <ProductPageContentInfo>
             <div>
-              <ProductPageInfoTitle>{findInfo.title}</ProductPageInfoTitle>
-              <ProductPageInfoPrize>$ {findInfo.price}</ProductPageInfoPrize>
-              <ProductPageInfoDesc>{findInfo.description}</ProductPageInfoDesc>
+              <ProductPageInfoTitle>{findInfo?.title}</ProductPageInfoTitle>
+              <ProductPageInfoPrize>$ {findInfo?.price}</ProductPageInfoPrize>
+              <ProductPageInfoDesc>{findInfo?.description}</ProductPageInfoDesc>
             </div>
             <div
               style={{
@@ -131,7 +137,7 @@ const ProductPage = () => {
               </ProductPageWishBtn>
             </div>
           </ProductPageContentInfo>
-        </ProductPageContent>
+        </ProductPageContent>}
       </ProductPageWrapper>
     </ProductPageContainer>
   );
