@@ -14,7 +14,7 @@ const WishListBreadCrumb = () => {
           Home
         </WishListBreadCrumbMenuListLink>
         <WishListBreadCrumbMenuListIcon />
-        <WishListBreadCrumbMenuListLink to="/all-categories">
+        <WishListBreadCrumbMenuListLink to="/wishlist">
           Wishlist
         </WishListBreadCrumbMenuListLink>
       </WishListBreadCrumbMenu>
