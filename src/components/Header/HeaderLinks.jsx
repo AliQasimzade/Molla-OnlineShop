@@ -14,6 +14,8 @@ import {
 } from "./HeaderStyled";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutedUser } from "../../redux/slices/userSlice";
+import { resetBasket } from "../../redux/slices/basketSlice";
+import { resetWishlist } from "../../redux/slices/wishListSlice";
 
 const HeaderLinks = () => {
   const [show, setShow] = useState(false);
@@ -31,6 +33,8 @@ const HeaderLinks = () => {
 
   const logoutUser = () => {
     dispatch(logoutedUser());
+    dispatch(resetBasket())
+    dispatch(resetWishlist())
   };
   return (
     <HeaderLeft>

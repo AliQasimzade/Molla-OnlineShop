@@ -17,19 +17,19 @@ const routes = [
     element: <Home />,
   },
   {
-    path: "wishlist",
+    path: "/wishlist",
     element: <WishList />,
   },
   {
-    path: "cart",
+    path: "/cart",
     element: <Cart />,
   },
   {
-    path: "checkout",
+    path: "/checkout",
     element: <Checkout />
   },
   {
-    path: "all-categories",
+    path: "/all-categories",
     element: <AllCategories />,
   },
   {
@@ -37,11 +37,11 @@ const routes = [
     element: <Login />
   },
   {
-    path:"products/:_id",
+    path:"/products/:_id",
     element:<ProductDetail />
   },
   {
-    path:"admin",
+    path:"/admin",
     element:<AdminLayout />,
     children: [
       {

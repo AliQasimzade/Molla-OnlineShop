@@ -14,10 +14,13 @@ export const wishListSlice = createSlice({
    removeWishItem: (state, action) => {
      const filterWishlist = state.wishlist.filter(wish => wish._id !== action.payload._id);
      state.wishlist = [...filterWishlist]
+   },
+   resetWishlist: (state) => {
+    state.wishlist = []
    }
   },
 })
 
-export const { addWish,removeWishItem } = wishListSlice.actions
+export const { addWish,removeWishItem,resetWishlist } = wishListSlice.actions
 
 export default wishListSlice.reducer
