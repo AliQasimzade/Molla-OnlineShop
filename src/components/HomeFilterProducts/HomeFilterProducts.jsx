@@ -27,8 +27,8 @@ const HomeFilterProducts = ({ setItems }) => {
   const min = copyProducts.sort((a, b) => a.price - b.price)[0];
   const max = copyProducts.sort((a, b) => b.price - a.price)[0];
   const [close, setClose] = useState(false);
-  const [minVal, setMinVal] = useState(min?.price - 10);
-  const [maxVal, setMaxVal] = useState(max?.price + 10);
+  const [minVal, setMinVal] = useState(min?.price);
+  const [maxVal, setMaxVal] = useState(max?.price);
   return (
     <HomeFilterProductsContainer>
       <HomeFilterProductsWrapper>
@@ -113,7 +113,7 @@ const HomeFilterProducts = ({ setItems }) => {
               </PriceRange>
               <div style={{ padding: "10px 0" }}>
                 <RangeSlider
-                  min={min?.price-3}
+                  min={min?.price}
                   defaultValue={[minVal, maxVal]}
                   onInput={(values) => {
                     setMinVal(values[0]);
@@ -126,7 +126,7 @@ const HomeFilterProducts = ({ setItems }) => {
                     console.log(filterProducts);
                     setItems(filterProducts);
                   }}
-                  max={max?.price+90}
+                  max={max?.price}
                 />
               </div>
             </CategorySectionOne>

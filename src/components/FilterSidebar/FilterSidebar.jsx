@@ -34,8 +34,8 @@ const FilterSidebar = ({ setItems }) => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
-  const [minVal, setMinVal] = useState(min?.price - 1);
-  const [maxVal, setMaxVal] = useState(max?.price + 1);
+  const [minVal, setMinVal] = useState(min?.price);
+  const [maxVal, setMaxVal] = useState(max?.price);
 
   const toggleCategory = () => {
     setOpen(!open);
@@ -136,7 +136,7 @@ const FilterSidebar = ({ setItems }) => {
             </FilterPriceText>
             <div style={{ padding: "10px 0" }}>
               <RangeSlider
-                min={min?.price - 3}
+                min={min?.price}
                 defaultValue={[minVal, maxVal]}
                 onInput={(values) => {
                   setMinVal(values[0]);
@@ -149,7 +149,7 @@ const FilterSidebar = ({ setItems }) => {
 
                   setItems(filterProducts);
                 }}
-                max={max?.price + 90}
+                max={max?.price}
               />
             </div>
           </FilterCategoryWrapperCopy>
