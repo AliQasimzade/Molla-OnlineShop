@@ -11,9 +11,10 @@ color: #777;
 `
 
 const Container = styled.div`
-  width: 85%;
-  margin: auto;
+ max-width: 1200px;
+  margin:0 auto;
   display: flex;
+  padding: 0 10px;
   flex-direction: row;
   gap:10px;
   margin-top: 60px;
@@ -23,7 +24,7 @@ const Container = styled.div`
 `
 const Product_container = styled.div`
   width: 70%;
-  padding: 10px;
+  padding: 10px 0;
   @media(max-width:992px){
     width: 100%;
   }

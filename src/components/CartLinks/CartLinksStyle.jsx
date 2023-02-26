@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom"
-import {IoChevronForwardOutline} from "react-icons/io5"
-
+import { Link } from "react-router-dom";
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 const Section2 = styled.div`
   padding: 1.5rem 0;
@@ -9,8 +8,9 @@ const Section2 = styled.div`
 `;
 
 const Wrapper = styled.ul`
-  width: 85%;
-  margin: auto;
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: 0 auto;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -26,15 +26,9 @@ const Links = styled(Link)`
   }
 `;
 
-const Arrow= styled(IoChevronForwardOutline)`
-    margin-top: 3px;
-    color: #777;
- `
+const Arrow = styled(IoChevronForwardOutline)`
+  margin-top: 3px;
+  color: #777;
+`;
 
- export{
-    Section2,
-    Wrapper,
-    Text_container,
-    Links,
-    Arrow
- }
+export { Section2, Wrapper, Text_container, Links, Arrow };

@@ -3,6 +3,7 @@ import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
+import Zoom from "react-img-zoom";
 
 const ProductPageContainer = styled.div``;
 
@@ -32,61 +33,67 @@ const ProductPageInfoPrize = styled.p`
   color: #c96;
   font-size: 20px;
 `;
-const ProductPageInfoDesc = styled.span``;
-const ProductPageContentInfo = styled.div`
- width: calc(100% - 457px);
- padding-left: 20px;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- @media screen and (max-width: 800px) {
-    width: 100%;
- }
+const ProductPageInfoDesc = styled.span`
+  word-break: break-all;
 `;
-const ProductAddToCartIcon = styled(MdAddShoppingCart)``
-const ProductPageAddToCart = styled.button`
 
-outline: none;
-background: #fff;
-color: #c96;
-cursor: pointer;
-text-transform: uppercase;
-padding: 10px 15px;
-border: 1px solid #c96;
-display: flex;
-align-items: center;
-gap: 5px;
-transition: 250ms linear;
-&:hover {
+const ZoomImage = styled(Zoom)`
+ width:457px;
+ height: 457px;
+`
+const ProductPageContentInfo = styled.div`
+  width: calc(100% - 457px);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+`;
+const ProductAddToCartIcon = styled(MdAddShoppingCart)``;
+const ProductPageAddToCart = styled.button`
+  outline: none;
+  background: #fff;
+  color: #c96;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border: 1px solid #c96;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 250ms linear;
+  &:hover {
     background-color: #c96;
     color: #fff;
-}
-&:disabled {
+  }
+  &:disabled {
     background: #c96;
     color: #ebebeb;
-    opacity: .55;
-}
-`
+    opacity: 0.55;
+  }
+`;
 const ProductPageWishIcon = styled(FiHeart)``;
 const ProductPageWishBtn = styled.button`
- border: none;
- outline: none;
- background: none;
- display: flex;
- font-size: 16px;
- gap: 10px;
- align-items: center;
- transition: 250ms linear;
- cursor: pointer;
- & ${ProductPageWishIcon} {
+  border: none;
+  outline: none;
+  background: none;
+  display: flex;
+  font-size: 16px;
+  gap: 10px;
+  align-items: center;
+  transition: 250ms linear;
+  cursor: pointer;
+  & ${ProductPageWishIcon} {
     color: #c96;
- }
- &:hover {
+  }
+  &:hover {
     color: #c96;
- }
- &:disabled {
-    opacity: .55;
- }
+  }
+  &:disabled {
+    opacity: 0.55;
+  }
 `;
 
 const ProductPageContentImage = styled.img`
@@ -136,5 +143,6 @@ export {
   ProductPageInfoPrize,
   ProductPageInfoDesc,
   ProductPageAddToCart,
-  ProductAddToCartIcon
+  ProductAddToCartIcon,
+  ZoomImage
 };
