@@ -22,13 +22,13 @@ const HomeFilterProducts = ({ setItems }) => {
   const products = useSelector(
     (state) => state.persistedReducer.products.products
   );
-  const copyProducts = products.length > 0 ? [...products] : []
+  const copyProducts = products.length > 0 ? [...products] : [];
 
   const min = copyProducts.sort((a, b) => a.price - b.price)[0];
   const max = copyProducts.sort((a, b) => b.price - a.price)[0];
   const [close, setClose] = useState(false);
-  const [minVal, setMinVal] = useState(min?.price);
-  const [maxVal, setMaxVal] = useState(max?.price);
+  const [minVal, setMinVal] = useState(min?.price - 10);
+  const [maxVal, setMaxVal] = useState(max?.price + 10);
   return (
     <HomeFilterProductsContainer>
       <HomeFilterProductsWrapper>
@@ -113,7 +113,7 @@ const HomeFilterProducts = ({ setItems }) => {
               </PriceRange>
               <div style={{ padding: "10px 0" }}>
                 <RangeSlider
-                    min={min?.price}
+                  min={min.price-3}
                   defaultValue={[minVal, maxVal]}
                   onInput={(values) => {
                     setMinVal(values[0]);
@@ -123,10 +123,10 @@ const HomeFilterProducts = ({ setItems }) => {
                         return product;
                       }
                     });
-
+                    console.log(filterProducts);
                     setItems(filterProducts);
                   }}
-                  max={max?.price}
+                  max={max.price+90}
                 />
               </div>
             </CategorySectionOne>
