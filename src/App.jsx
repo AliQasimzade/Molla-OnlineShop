@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { getProducts } from "./redux/slices/productsSlice";
 
-
 import { useEffect } from "react";
 const App = () => {
   const location = useLocation();
@@ -14,27 +13,32 @@ const App = () => {
 
   const baseUrl = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
-      const getAllProducts = async () => {
-        const response = await axios.get(`${baseUrl}/products`);
-        dispatch(getProducts(response.data));
-      };
-      getAllProducts();
-    
-  },[]);
+    const getAllProducts = async () => {
+      const response = await axios.get(`${baseUrl}/products`);
+      dispatch(getProducts(response.data));
+    };
+    getAllProducts();
+  }, []);
 
   return (
     <div className="App">
       {location.pathname != "/admin" &&
       location.pathname != "/admin/products" &&
       location.pathname != "/admin/orders" &&
-      location.pathname != "/admin/users" ? (
+      location.pathname != "/admin/users" &&
+      location.pathname != "/user" &&
+      location.pathname != "/user/login" &&
+      location.pathname != "/user/signup" ? (
         <Header />
       ) : null}
       {useRoutes(routes)}
       {location.pathname != "/admin" &&
       location.pathname != "/admin/products" &&
       location.pathname != "/admin/orders" &&
-      location.pathname != "/admin/users" ? (
+      location.pathname != "/admin/users" &&
+      location.pathname != "/user" &&
+      location.pathname != "/user/login" &&
+      location.pathname != "/user/signup" ? (
         <Footer />
       ) : null}
     </div>

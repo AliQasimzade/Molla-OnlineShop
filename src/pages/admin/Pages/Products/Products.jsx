@@ -10,6 +10,7 @@ export default function Products({currentAdmin,setCurrentAdmin}) {
     axios.get(`${baseUrl}/products`).then(dt=>setProducts(dt.data)).catch(err=>console.log(err))
   },[])
   const [id,setId] = useState("")
+
   const [updateValues,setUpdateValues] = useState({
     title:"",
     description:"",
@@ -27,15 +28,18 @@ export default function Products({currentAdmin,setCurrentAdmin}) {
 
   }
   
-  const getId = (id) => {
-    setId(id)
-    const {title,description,price,image} = products.find(o=>o._id === id)
+  const getId = (arg) => {
+   
+    setId(arg)
+    console.log(arg)
+    const {title,description,price,image} = products.find(o=>o._id === arg)
     setUpdateValues({
       title:title,
       description:description,
       price:price,
       image:image
     })
+    console.log(updateValues)
   }
   const updateProduct = async (id) => {
     axios.put(`${baseUrl}/updateproduct/${id}`,updateValues)
@@ -48,8 +52,10 @@ export default function Products({currentAdmin,setCurrentAdmin}) {
   }
   const update = (e) => {
     e.preventDefault();
+    console.log(id)
     updateProduct(id);
     setId("")
+
   }
   const deleteProduct = (id) => {
     axios.get(`${baseUrl}/deleteproduct/${id}`);
@@ -113,7 +119,7 @@ export default function Products({currentAdmin,setCurrentAdmin}) {
             <input type="text" accept='image/*' placeholder='image...' value={newprod.image} name="image"  onChange={addNewProd} />
             <input type="submit" value="add" />
                       </form>}
-          {id &&<div className="update-products">
+          {id !== "" &&<div className="update-products">
             <form onSubmit={update} className='update-form'>
               <input onChange={getUpdateValues} name="title" value={updateValues.title} type="text" placeholder='title' />
               <input onChange={getUpdateValues} name="description" value={updateValues.description} type="text" placeholder='description' />

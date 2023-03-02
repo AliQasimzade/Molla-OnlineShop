@@ -10,6 +10,12 @@ import Orders from "./pages/admin/Pages/Orders/Orders";
 import Users from "./pages/admin/Pages/Users/Users";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Admins from "./pages/admin/Pages/Admins/Admins";
+import HomeUser from "./pages/admin/Pages/Home/Home"
+import UserLayout from "./pages/admin/UserLayout";
+import UserProductDetail from "./pages/admin/Pages/ProductDetail/Product";
+import UserLogin from "./pages/admin/Pages/Login/Login";
+import UserRegister from "./pages/admin/Pages/Signup/Signup";
+
 import Layout from "../Layout";
 
 const routes = [
@@ -68,6 +74,28 @@ const routes = [
           },
         ],
       },
+      {
+        path:"user",
+        element:<UserLayout />,
+        children:[
+          {
+            element:<HomeUser />,
+            index:true,
+          },
+          {
+            path:"product/:_id",
+            element:<UserProductDetail />
+          },
+          {
+            path:"login",
+            element:<UserLogin />
+          },
+          {
+            path:"signup",
+            element:<UserRegister />
+          }
+        ]
+      }
     ],
   },
 ];
