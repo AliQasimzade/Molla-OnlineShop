@@ -3,7 +3,7 @@ import { IoChevronForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
-import Zoom from "react-img-zoom";
+import Zoom from 'react-medium-image-zoom'
 
 const ProductPageContainer = styled.div``;
 
@@ -37,10 +37,7 @@ const ProductPageInfoDesc = styled.span`
   word-break: break-all;
 `;
 
-const ZoomImage = styled(Zoom)`
- width:457px;
- height: 457px;
-`
+
 const ProductPageContentInfo = styled.div`
   width: calc(100% - 457px);
   padding-left: 20px;
@@ -144,5 +141,5 @@ export {
   ProductPageInfoDesc,
   ProductPageAddToCart,
   ProductAddToCartIcon,
-  ZoomImage
+
 };

@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const Products = ({items}) => {
-console.log(items)
 
   return (
     <ProductsContainer>

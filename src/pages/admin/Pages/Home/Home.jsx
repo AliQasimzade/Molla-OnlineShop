@@ -7,7 +7,7 @@ import { logoutedUser } from "../../../../redux/slices/userSlice";
 export default function Home() {
   const currentUser = useSelector((state) => state.persistedReducer.user.user);
   const products = useSelector(
-    (state) => state.persistedReducer.products.products
+    (state) => state.products.products
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();

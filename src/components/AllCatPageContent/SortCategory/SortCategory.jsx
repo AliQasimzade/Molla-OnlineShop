@@ -11,7 +11,7 @@ import { getProducts } from "../../../redux/slices/productsSlice";
 const SortCategory = ({setItems}) => {
   const dispatch = useDispatch();
   const products = useSelector(
-    (state) => state.persistedReducer.products.products
+    (state) => state.products.products
   );
   const copyProducts = [...products];
   const [select, setSelect] = useState("default")

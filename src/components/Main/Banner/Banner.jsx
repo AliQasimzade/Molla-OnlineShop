@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 
 const Banner = () => {
-  const carouselImages = useSelector(state => state.persistedReducer.products.products.slice(0,2));
+  const carouselImages = useSelector(state => state.products.products.slice(0,2));
   
   const [items, setItems] = useState(1);
   const carouselRef = useRef();

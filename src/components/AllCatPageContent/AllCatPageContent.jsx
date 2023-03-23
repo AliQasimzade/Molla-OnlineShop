@@ -11,7 +11,7 @@ import SortCategory from "./SortCategory/SortCategory";
 import { useSelector } from "react-redux";
 const AllCatPageContent = () => {
   const products = useSelector(
-    (state) => state.persistedReducer.products.products
+    (state) => state.products.products
   );
 
   const [items, setItems] = useState([]);

@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 
 const HomeFilterProducts = ({ setItems }) => {
   const products = useSelector(
-    (state) => state.persistedReducer.products.products
+    (state) => state.products.products
   );
   const copyProducts = products.length > 0 ? [...products] : [];
 

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer } from 'redux-persist';
+import productsSlice from './slices/productsSlice';
 import storage from 'redux-persist/lib/storage'
 import rootReducer from './slices/rootSlice'
 
@@ -14,8 +15,10 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     persistedReducer,
+    products:productsSlice
   },
-  middleware:[]
+  devTools:true,
+  middleware:[],
 })
 
 export const persistor = persistStore(store)

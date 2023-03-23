@@ -6,7 +6,7 @@ import Products from "../../components/Main/Products/Products";
 import { useSelector } from "react-redux";
 const Home = () => {
 
-  const products = useSelector(state => state.persistedReducer.products.products)
+  const products = useSelector(state => state.products.products)
 
   const [items, setItems] = useState([]);
   useEffect(() => {

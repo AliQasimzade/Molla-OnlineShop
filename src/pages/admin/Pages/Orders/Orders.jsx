@@ -38,14 +38,14 @@ const baseUrl = import.meta.env.VITE_BASE_URL
         <td>{obj.name}</td>
         <td>{obj.email}</td>
         <td>
-          {obj.products.map((product) => (
+          {obj?.products?.map((product) => (
             <span key={product._id}>
               {product.title}: {product.price}AZN Sayi: {product.count}{" "}
             </span>
           ))}
           <span>
             Toplam:{" "}
-            {obj.products.reduce((acc, val) => acc + val.price * val.count, 0)}
+            {obj?.products?.reduce((acc, val) => acc + val.price * val.count, 0)}
             AZN
           </span>
         </td>

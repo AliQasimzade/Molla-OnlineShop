@@ -24,7 +24,7 @@ import { addWish } from "../../../redux/slices/wishListSlice";
 const AllCatProducts = ({items, setItems}) => {
   const dispatch = useDispatch();
   const products = useSelector(
-    (state) => state.persistedReducer.products.products
+    (state) => state.products.products
   );
   const wishlist = useSelector(
     (state) => state.persistedReducer.wishlist.wishlist

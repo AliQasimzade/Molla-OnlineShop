@@ -1,6 +1,5 @@
 import React from "react";
-import {  toast } from "react-toastify";
-
+import { toast } from "react-toastify";
 import {
   Product,
   ProductAddBtn,
@@ -70,7 +69,7 @@ const ProductItem = ({ product }) => {
           <ProductWishIcon />
         </ProductWish>
         <ProductImageContainer to={`/products/${product._id}`}>
-          <ProductImage src={product.image} />
+          <ProductImage src={product.image} effect="blur" />
         </ProductImageContainer>
       </ProductWrapper>
       <ProductInfo>

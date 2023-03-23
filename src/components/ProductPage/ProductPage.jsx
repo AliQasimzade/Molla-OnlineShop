@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductPageBreadCrumb from "./ProductPageBreadCrumb";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import {
   ProductPageContainer,
   ProductPageWrapper,
@@ -12,7 +14,6 @@ import {
   ProductPageAddToCart,
   ProductPageWishBtn,
   ProductPageWishIcon,
-  ZoomImage,
 } from "./ProductPageStyled";
 
 import { useParams } from "react-router-dom";
@@ -23,9 +24,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductPage = () => {
   const { _id } = useParams();
-  const products = useSelector(
-    (state) => state.persistedReducer.products.products
-  );
+  const products = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
   const basket = useSelector((state) => state.persistedReducer.basket.basket);
   const wishlist = useSelector(
@@ -34,9 +33,10 @@ const ProductPage = () => {
   const user = useSelector((state) => state.persistedReducer.user.user);
   const [findInfo, setFindInfo] = useState(false);
   useEffect(() => {
-    if (products) {
+    if (products.length > 0) {
       const res = [...products].find((product) => product._id === _id);
       setFindInfo(res);
+      console.log(res);
     }
   }, [products]);
 
@@ -92,13 +92,14 @@ const ProductPage = () => {
         <ProductPageBreadCrumb />
         {findInfo !== false && (
           <ProductPageContent>
-            <ZoomImage
-              img={findInfo?.image}
-              transitionTime={0.26}
-              zoomScale={2}
-              width={350}
-              height={457}
-            />
+            <Zoom>
+              <img
+                src={findInfo?.image}
+                style={{ objectFit: "contain" }}
+                width={350}
+                height={350}
+              />
+            </Zoom>
             <ProductPageContentInfo>
               <div>
                 <ProductPageInfoTitle>{findInfo?.title}</ProductPageInfoTitle>

@@ -3,7 +3,7 @@ import { FiHeart } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { SlRefresh } from "react-icons/sl";
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 const ProductsContainer = styled.div`
   width: 100%;
   display: flex;
@@ -151,7 +151,7 @@ const ProductImageContainer = styled(Link)`
   align-items: center;
   justify-content: center;
 `;
-const ProductImage = styled.img`
+const ProductImage = styled(LazyLoadImage)`
   width: auto;
   height: 94%;
   max-height: 200px;

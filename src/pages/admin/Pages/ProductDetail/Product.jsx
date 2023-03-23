@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 export default function Product() {
-    const products = useSelector(state => state.persistedReducer.products.products)
+    const products = useSelector(state => state.products.products)
     const params = useParams();
     const baseUrl = import.meta.env.VITE_BASE_URL
     console.log(params)
