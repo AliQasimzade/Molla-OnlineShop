@@ -36,7 +36,6 @@ const ProductPage = () => {
     if (products.length > 0) {
       const res = [...products].find((product) => product._id === _id);
       setFindInfo(res);
-      console.log(res);
     }
   }, [products]);
 

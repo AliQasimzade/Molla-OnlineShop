@@ -44,13 +44,13 @@ const FilterCategoryContentWrapper = styled.div`
   visibility: hidden;
   transition: 250ms linear;
   &.open {
-    height: 220px;
+    height: 370px;
     visibility: visible;
   }
   @media screen and (max-width: 768px) {
     flex-direction: column;
     &.open {
-      height: 420px;
+      height: 520px;
     }
   }
 `;

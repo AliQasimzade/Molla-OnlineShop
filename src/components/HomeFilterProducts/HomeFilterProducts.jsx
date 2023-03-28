@@ -17,18 +17,47 @@ import {
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const HomeFilterProducts = ({ setItems }) => {
-  const products = useSelector(
-    (state) => state.products.products
-  );
-  const copyProducts = products.length > 0 ? [...products] : [];
+  const [copyProducts, setCopyProducts] = useState([]);
+  const products = useSelector((state) => state.products.products);
+  const cat = [...new Set(products.map((product) => product.category))];
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
+  const [minVal, setMinVal] = useState(0);
+  const [maxVal, setMaxVal] = useState(0);
+  useEffect(() => {
+    if (products) {
+      setCopyProducts([...products]);
+      setMin([...products].sort((a, b) => a.price - b.price)[0]);
+      setMax([...products].sort((a, b) => b.price - a.price)[0]);
+      setMinVal([...products].sort((a, b) => a.price - b.price)[0]?.price);
+      setMaxVal([...products].sort((a, b) => b.price - a.price)[0]?.price);
+    }
+  }, [products]);
 
-  const min = copyProducts.sort((a, b) => a.price - b.price)[0];
-  const max = copyProducts.sort((a, b) => b.price - a.price)[0];
   const [close, setClose] = useState(false);
-  const [minVal, setMinVal] = useState(min?.price);
-  const [maxVal, setMaxVal] = useState(max?.price);
+
+  const checkboxes = document.querySelectorAll(".checkbox");
+  function onlyOneChecked() {
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== this) {
+        checkbox.checked = false;
+      }
+    });
+  }
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", onlyOneChecked);
+  });
+  const filterCat = (cat, e) => {
+    if (e.target.checked) {
+      setItems(products.filter((product) => product.category === cat));
+    } else {
+      setItems(products.map((product) => product));
+    }
+  };
   return (
     <HomeFilterProductsContainer>
       <HomeFilterProductsWrapper>
@@ -42,66 +71,29 @@ const HomeFilterProducts = ({ setItems }) => {
           <FilterCategoryContentWrapper className={close && "open"}>
             <CategorySectionOne>
               <p style={{ padding: "10px 0 20px 0" }}>Category:</p>
-              <CategorySectionItem>
-                <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                >
-                  <CategorySectionCheck />
-                  <p>Check</p>
-                </button>
-                <CategoryProductCount>3</CategoryProductCount>
-              </CategorySectionItem>
-              <CategorySectionItem>
-                <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                >
-                  <CategorySectionCheck />
-                  <p>Check</p>
-                </button>
-                <CategoryProductCount>3</CategoryProductCount>
-              </CategorySectionItem>
-              <CategorySectionItem>
-                <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                >
-                  <CategorySectionCheck />
-                  <p>Check</p>
-                </button>
-                <CategoryProductCount>3</CategoryProductCount>
-              </CategorySectionItem>
-              <CategorySectionItem>
-                <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    border: "none",
-                    outline: "none",
-                    background: "none",
-                  }}
-                >
-                  <CategorySectionCheck />
-                  <p>Check</p>
-                </button>
-                <CategoryProductCount>3</CategoryProductCount>
-              </CategorySectionItem>
+              {cat.map((ca) => (
+                <CategorySectionItem key={ca}>
+                  <button
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      border: "none",
+                      outline: "none",
+                      background: "none",
+                    }}
+                  >
+                    <CategorySectionCheck
+                      id={ca}
+                      className="checkbox"
+                      onClick={(event) => filterCat(ca, event)}
+                    />
+                    <label htmlFor={ca}>{ca}</label>
+                  </button>
+                  <CategoryProductCount>
+                    {copyProducts.filter((pro) => pro.category === ca).length}
+                  </CategoryProductCount>
+                </CategorySectionItem>
+              ))}
             </CategorySectionOne>
             <CategorySectionOne>
               <PriceTitle>Price: </PriceTitle>
@@ -109,25 +101,29 @@ const HomeFilterProducts = ({ setItems }) => {
                 Price Range:
                 <span style={{ color: "#c96" }}>${minVal}</span>
                 <span style={{ color: "#c96" }}>-</span>
-                <span style={{ color: "#c96" }}>${maxVal}</span>
+                <span style={{ color: "#c96" }}>${maxVal && maxVal}</span>
               </PriceRange>
               <div style={{ padding: "10px 0" }}>
-                <RangeSlider
-                  min={min?.price}
-                  defaultValue={[minVal, maxVal]}
-                  onInput={(values) => {
-                    setMinVal(values[0]);
-                    setMaxVal(values[1]);
-                    const filterProducts = copyProducts.filter((product) => {
-                      if (minVal <= product.price && product.price <= maxVal) {
-                        return product;
-                      }
-                    });
-                    console.log(filterProducts);
-                    setItems(filterProducts);
-                  }}
-                  max={max?.price}
-                />
+                {copyProducts.length > 0 && (
+                  <RangeSlider
+                    min={min?.price}
+                    defaultValue={[minVal, maxVal]}
+                    onInput={(values) => {
+                      setMinVal(values[0]);
+                      setMaxVal(values[1]);
+                      const filterProducts = copyProducts.filter((product) => {
+                        if (
+                          minVal <= product.price &&
+                          product.price <= maxVal
+                        ) {
+                          return product;
+                        }
+                      });
+                      setItems(filterProducts);
+                    }}
+                    max={max?.price}
+                  />
+                )}
               </div>
             </CategorySectionOne>
           </FilterCategoryContentWrapper>

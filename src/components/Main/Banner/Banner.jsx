@@ -14,11 +14,13 @@ import {
 } from "./BannerStyled";
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-
+import Skeleton from "@mui/material/Skeleton";
 
 const Banner = () => {
-  const carouselImages = useSelector(state => state.products.products.slice(0,2));
-  
+  const carouselImages = useSelector((state) =>
+    state.products.products.slice(0, 2)
+  );
+
   const [items, setItems] = useState(1);
   const carouselRef = useRef();
   const nextSlide = () => {
@@ -41,7 +43,6 @@ const Banner = () => {
     }
   };
 
-  
   return (
     <BannerContainer>
       <PrevArrow onClick={prevSlide}>
@@ -51,24 +52,30 @@ const Banner = () => {
         <NextArrowIcon />
       </NextArrow>
       <Carousel ref={carouselRef}>
-     {carouselImages.map(car => (
-       <CarouselItem key={car._id} bgImage={car.image}>
-       <CarouselItemInfo>
-         <CarouselItemHeading>SEASONAL PICKS</CarouselItemHeading>
-         <CarouselItemTitle>
-           Get All
-           <br />
-           The Good Stuff
-         </CarouselItemTitle>
-         <CarouselItemButton to="/all-categories">
-           <span>DISCOVER MORE</span>
-           <CarouselItemButtonIcon />
-         </CarouselItemButton>
-       </CarouselItemInfo>
-     </CarouselItem>
-     ))}
-
-        
+        {carouselImages.length > 0 ? (
+          carouselImages.map((car) => (
+            <CarouselItem key={car._id} bgImage={car.image}>
+              <CarouselItemInfo>
+                <CarouselItemHeading>SEASONAL PICKS</CarouselItemHeading>
+                <CarouselItemTitle>
+                  Get All
+                  <br />
+                  The Good Stuff
+                </CarouselItemTitle>
+                <CarouselItemButton to="/all-categories">
+                  <span>DISCOVER MORE</span>
+                  <CarouselItemButtonIcon />
+                </CarouselItemButton>
+              </CarouselItemInfo>
+            </CarouselItem>
+          ))
+        ) : (
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            style={{ width: "90%", margin:'0 auto', height: "560px" }}
+          />
+        )}
       </Carousel>
     </BannerContainer>
   );

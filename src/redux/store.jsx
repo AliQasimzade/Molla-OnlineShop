@@ -3,7 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import productsSlice from './slices/productsSlice';
 import storage from 'redux-persist/lib/storage'
 import rootReducer from './slices/rootSlice'
-
+import thunk from 'redux-thunk'
 const persistConfig = {
     key: 'root',
     storage,
@@ -18,7 +18,7 @@ export const store = configureStore({
     products:productsSlice
   },
   devTools:true,
-  middleware:[],
+  middleware:[thunk],
 })
 
 export const persistor = persistStore(store)

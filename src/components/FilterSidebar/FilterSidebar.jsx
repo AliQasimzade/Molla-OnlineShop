@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import {
@@ -23,10 +23,11 @@ import {
 
 import { useSelector } from "react-redux";
 const FilterSidebar = ({ setItems }) => {
-  const products = useSelector(
-    (state) => state.products.products
+  const products = useSelector((state) => state.products.products);
+  const cat = [...new Set(products.map((product) => product.category))];
+  const [copyProducts, setCopyProducts] = useState(
+    products.length > 0 ? [...products] : []
   );
-  const copyProducts = products.length > 0 ? [...products] : [];
 
   const min = copyProducts.sort((a, b) => a.price - b.price)[0];
   const max = copyProducts.sort((a, b) => b.price - a.price)[0];
@@ -42,6 +43,26 @@ const FilterSidebar = ({ setItems }) => {
 
   const togglePrice = () => {
     setShow(!show);
+  };
+  const checkboxes = document.querySelectorAll(".checkbox");
+
+  function onlyOneChecked() {
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== this) {
+        checkbox.checked = false;
+      }
+    });
+  }
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", onlyOneChecked);
+  });
+  const filterCat = (cat, e) => {
+    if (e.target.checked) {
+      setItems(products.filter((product) => product.category === cat));
+    } else {
+      setItems(products.map((product) => product));
+    }
   };
 
   return (
@@ -60,48 +81,22 @@ const FilterSidebar = ({ setItems }) => {
           </CategoryTitle>
 
           <FilterCategoryWrapper className={open && "open"}>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="dresses" />
-                <FilterItemLabel htmlFor="dresses">Dresses</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="t-shirts" />
-                <FilterItemLabel htmlFor="t-shirts">T-shirts</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="bags" />
-                <FilterItemLabel htmlFor="bags">Bags</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="jackets" />
-                <FilterItemLabel htmlFor="jackets">Jackets</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="shoes" />
-                <FilterItemLabel htmlFor="shoes">Shoes</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
-            <FilterItem>
-              <div>
-                <FilterItemCheckBox id="jeans" />
-                <FilterItemLabel htmlFor="jeans">Jeans</FilterItemLabel>
-              </div>
-              <FilterItemCount>3</FilterItemCount>
-            </FilterItem>
+            {cat.map((ca) => (
+              <FilterItem key={ca._id}>
+                <div>
+                  <FilterItemCheckBox
+                    id={ca}
+                    name="group"
+                    className="checkbox"
+                    onClick={(event) => filterCat(ca, event)}
+                  />
+                  <FilterItemLabel htmlFor={ca}>{ca}</FilterItemLabel>
+                </div>
+                <FilterItemCount>
+                  {copyProducts.filter((pro) => pro.category === ca).length}
+                </FilterItemCount>
+              </FilterItem>
+            ))}
           </FilterCategoryWrapper>
         </FilterCategory>
 

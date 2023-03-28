@@ -13,6 +13,7 @@ import {
   ProductWishIcon,
   ProductAddBtnIcon,
 } from "./ProductsStyled";
+import Skeleton from "@mui/material/Skeleton";
 import { addBasket } from "../../../redux/slices/basketSlice";
 import { addWish } from "../../../redux/slices/wishListSlice";
 import { useDispatch, useSelector } from "react-redux";

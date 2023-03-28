@@ -37,7 +37,7 @@ const FilterCategoryWrapper = styled.div`
   padding-top: 16px;
   transition: 350ms linear;
   overflow: hidden;
- height: 250px;
+ height: 350px;
   opacity: 1;
   &.open {
     height: 0;
